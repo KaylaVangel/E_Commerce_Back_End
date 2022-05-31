@@ -24,7 +24,6 @@ router.get('/:id', (req, res) => {
     attributes: [
       'id',
       'category_name',
-      'created_at',
     ],
     include: [
       {
