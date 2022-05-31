@@ -17,6 +17,7 @@ Category.init(
       allowNull: false
     },
     // define columns
+    //done!!!!!!!!!
   },
   {
     sequelize,
