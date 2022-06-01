@@ -50,14 +50,53 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new category
+  //check!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  Category.create({
+    category_name: req.body.category_name
+  })
 });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  //check!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  Category.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbUpdateCat => {
+      if (!dbUpdateCat[0]) {
+        res.status(404).json({ message: 'No category found with this id' });
+        return;
+      }
+      res.json(dbUpdateCat);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
+
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
+  //check!!!!!!!!!!!!!!!!!!!!!!!I think it works
+  Category.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbCatDel => {
+    if (!dbCatDel) {
+      res.status(404).json({ message: 'No category foudn with this id' });
+      return;
+    }
+    res.json(dbCatDel);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 module.exports = router;
