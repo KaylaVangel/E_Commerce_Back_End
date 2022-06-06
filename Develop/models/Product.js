@@ -29,6 +29,14 @@ Product.init(
       }
 
     },
+    stock: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      validate: {
+        isDecimal: true,
+      }
+
+    },
     category_id: {
       type: DataTypes.INTEGER,
       references: {
